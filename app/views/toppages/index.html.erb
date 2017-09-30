@@ -1,0 +1,19 @@
+<% if logged_in? %>
+  <div class="row">
+    <div class="col-md-4">
+      <%= form_for(@task) do |f| %>
+        <%= render 'tasks/form', task: @task %>
+      <% end %>
+    </div>
+    <div class="col-md-8">
+      <%= render 'tasks/tasks', tasks: @tasks %>
+    </div>
+  </div>
+<% else %>
+  <div class="center jumbotron">
+    <div class="text-center">
+      <h1>課題タスクリストへようこそ！</h1>
+      <%= link_to '新規登録', signup_path, class: 'btn btn-lg btn-primary' %>
+    </div>
+  </div>
+<% end %>

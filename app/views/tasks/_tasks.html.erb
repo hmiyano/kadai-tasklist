@@ -1,0 +1,37 @@
+<ul class="media-list">
+
+  <% tasks.each do |task| %>
+    <% user = task.user %>
+    <li class="media">
+ 
+      <div class="media-body">
+        <div>
+           <table class="table table-bordered table-hover">
+            <tr>
+              <th>ID</th>
+              <th>タスク</th>
+              <th>ステータス</th>
+              <th>編集</th>
+              <th>削除</th>
+            </tr>
+            <tr>
+              <td><%= task.id %></td>
+              <td><%= task.content %></td>
+              <td><%= task.status %></td>
+              <td><% if current_user == task.user %>
+                <%= link_to '編集', edit_task_path(task), class: 'btn btn-primary btn-xs' %></td>
+                <% end %>
+              <td><% if current_user == task.user %>
+                <%= link_to "削除", task, method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'btn btn-danger btn-xs' %>
+                <% end %>
+                </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </li>
+  <% end %>
+  <%= paginate tasks %>
+</ul>
+
+        
